@@ -10,6 +10,14 @@ public class Hotel {
 	private Room[] doub = new Room[100];
 	private Room[] quad = new Room[100];
 	
+	/**
+	 * @param s numbers of single rooms
+	 * @param d numbers of double rooms
+	 * @param q numbers of quad rooms
+	 * @param start the date start
+	 * @param end the date end
+	 * @return boolean if the rooms is empty
+	 */
 	public boolean isempty(int s, int d, int q, Calendar start, Calendar end) {
 		long st = start.getTimeInMillis() - Calendar.getInstance(Locale.TAIWAN).getTimeInMillis();
 		long en = end.getTimeInMillis() - Calendar.getInstance(Locale.TAIWAN).getTimeInMillis();

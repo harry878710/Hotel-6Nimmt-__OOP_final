@@ -11,7 +11,7 @@ public class Search {
 		start = (Calendar) s.clone();
 		end = (Calendar) e.clone();
 	}
-
+	// to search the input Hotel h has the option for the people and rooms
 	public void roomsearch(Hotel h) {
 		int s = 0, d = 0, q = 0;
 		// s+d+q = rooms s+2d+4q = people -> d+3q = p-r

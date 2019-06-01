@@ -1,4 +1,5 @@
 import java.io.*;
+import java.sql.*;
 import org.json.*;
 import java.util.*;
 //import java.sql.*;
@@ -6,7 +7,10 @@ import java.util.*;
 public class test {
 
 	public static void main(String[] args) {
-//json start
+		Visitor v = new Visitor();
+		v.newVisitor("hahaha","hehe");
+		//v.login("eshag", "hehe");
+//json to object start
 		Hotel[] h = new Hotel[1500];
  		try (FileReader reader = new FileReader("HotelList.json");) {
 			JSONTokener jsrc = new JSONTokener(reader);
