@@ -21,6 +21,7 @@ public class Player {
 		return name;
 	}
 
+	// Add cards "c" to player's hand and sort them.
 	public void setCards(Card c[]) {
 		int i = 0;
 		for (; hand[i] != null; i++) {
@@ -33,9 +34,9 @@ public class Player {
 
 	public String printMessage() {
 		return (name + " please select a card : ");
-
 	}
 
+	// Call player to select a card.(Partially random select now for convenience.)
 	public Card selectCard(int index) {
 		if (index == -1) {
 			Random rnd = new Random();
@@ -48,6 +49,7 @@ public class Player {
 		return result;
 	}
 
+	// Call player to select a row.(Random select now for convenience.)
 	public int selectRow() {
 
 		Random rnd = new Random();
@@ -57,6 +59,7 @@ public class Player {
 		return index;
 	}
 
+	// Remove the card at "index".
 	public void remove(int index) {
 		Card[] temp = new Card[hand.length - 1];
 
@@ -70,6 +73,7 @@ public class Player {
 			hand[i] = temp[i];
 	}
 
+	// Add BULLs on player's score.
 	public void eatBull(int s) {
 		score += s;
 	}
@@ -83,6 +87,7 @@ public class Player {
 		System.out.print("\n");
 	}
 
+	// Sort cards on the player's hand using bubble sort.
 	public void sortCards() {
 		for (int i = 0; i < hand.length; i++) {
 			for (int j = i + 1; j < hand.length; j++) {

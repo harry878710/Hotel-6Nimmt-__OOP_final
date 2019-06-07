@@ -4,6 +4,7 @@ public class Cardbank {
 
 	private Card[] bank;
 
+	// Create the bank with 104 cards.
 	public Cardbank() {
 		bank = new Card[104];
 		for (int i = 1; i <= 104; i++) {
@@ -23,6 +24,7 @@ public class Cardbank {
 		}
 	}
 
+	// Remove card at the "index" of bank.
 	public void remove(int index) {
 		Card[] temp = new Card[bank.length - 1];
 
@@ -36,6 +38,7 @@ public class Cardbank {
 			bank[i] = temp[i];
 	}
 
+	// Put card "c" back to the bank.
 	public void putback(Card c) {
 		Card[] temp = new Card[bank.length + 1];
 		for (int i = 0; i < bank.length; i++)
@@ -47,6 +50,7 @@ public class Cardbank {
 			bank[i] = temp[i];
 	}
 
+	// Randomly return cards and delete them from bank.
 	public Card[] getCard(int n) {
 		Card result[] = new Card[n];
 		for (int i = 0; i < n; i++) {
@@ -58,6 +62,7 @@ public class Cardbank {
 		return result;
 	}
 
+	// Randomly return a card and delete it from bank.
 	public Card getCard() {
 		Random rnd = new Random();
 		int index = rnd.nextInt(bank.length);

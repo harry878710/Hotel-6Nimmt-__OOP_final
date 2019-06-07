@@ -7,40 +7,48 @@ public class Table extends Cardbank {
 		board = new Card[4][6];
 	}
 
+	// Put card "c" at row "index", column 0 on the table,
+	// including the condition after a player takes BULLs.
 	public void init(Card c, int index) {
 		board[index][0] = c;
 	}
 
+	// Determine where card "c" should be put, or the player "p" should take the
+	// BULLs.
 	public void placeCard(Player p, Card c) {
 
+		// Fetch the cards of every row and sort by card number order.
 		Card[] boardOrder = new Card[4];
 		int[] rowIndex = findCard(new Card(0, 0));
 		for (int i = 0; i < 4; i++)
 			boardOrder[i] = board[i][rowIndex[i]];
 		boardOrder = sortCard(boardOrder);
 
-		// 從台面上最大的數字依序比較
+		// Compare card "c" with the cards on board from the largest number.
 		for (int i = 0; i < 4; i++) {
-			// 如果c的數字 > 台面上的數字，則接在此排後面
 			if (c.getNumber() > boardOrder[3 - i].getNumber()) {
 				int[] pos = findCard(boardOrder[3 - i]);
-				// 但如果此排已經有5張牌，則直接拿走所有牛頭
+				// Condition that "p" should take the BULLs right away.
 				if (pos[1] == 4) {
 					System.out.println("*** " + p.getName() + " BULL, take row " + pos[0]);
 					p.eatBull(takeCards(pos[0]));
 					init(c, pos[0]);
 					return;
 				}
+				// Condition that "c" can be put on the board.
 				board[pos[0]][pos[1] + 1] = c;
 				return;
 			}
 		}
+
+		// Condition that "p" should select a row and take the BULLs.
 		System.out.print("*** " + p.getName() + " must select a row to eat the BULL : ");
 		int row = p.selectRow();
 		p.eatBull(takeCards(row));
 		init(c, row);
 	}
 
+	// Sort cards using bubble sort.
 	public Card[] sortCard(Card[] data) {
 		for (int i = 0; i < data.length; i++) {
 			for (int j = i + 1; j < data.length; j++) {
@@ -54,9 +62,11 @@ public class Table extends Cardbank {
 		return data;
 	}
 
-	public int[] findCard(Card c) { // 如果number傳0，可以找每列最後一張牌
+	// Return {row, column} of the card "c" on the table.
+	// If the number of "c" is 0, findCard() returns the column of the last card of
+	// every row.
+	public int[] findCard(Card c) {
 		int[] result = new int[4];
-
 		int number = c.getNumber();
 
 		for (int i = 0; i < 4; i++) {
@@ -71,10 +81,10 @@ public class Table extends Cardbank {
 			if (number == 0)
 				result[i] = j - 1;
 		}
-
 		return result;
 	}
 
+	// Returns total BULLs on the cards at row "index".
 	public int takeCards(int index) {
 		int result = 0;
 		for (int j = 0; board[index][j] != null && j < 5; j++) {
