@@ -5,7 +5,16 @@ public class Visitor {
 	private String name = null;
 	private String password = null;
 
-//加入同帳號不能建立
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	
+
 	public boolean newVisitor(String n, String p) {
 		name = n;
 		password = p;
@@ -15,7 +24,7 @@ public class Visitor {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:hotel.db");
 			c.setAutoCommit(false);
-			System.out.println("Opened database successfully");
+			//System.out.println("Opened database successfully");
 
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Login;");
@@ -59,8 +68,7 @@ public class Visitor {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:hotel.db");
 			c.setAutoCommit(false);
-			System.out.println("Opened database successfully");
-
+			// System.out.println("Opened database successfully");
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Login;");
 			while (rs.next()) {
@@ -69,6 +77,8 @@ public class Visitor {
 						rs.close();
 						stmt.close();
 						c.close();
+						name = n.toString();
+						password = p.toString();
 						return true;
 					} else {
 						rs.close();
@@ -88,7 +98,7 @@ public class Visitor {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
 		}
-		System.out.println("Operation done successfully");
+		// System.out.println("Operation done successfully");
 		return true;
 	}
 

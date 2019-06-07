@@ -30,7 +30,7 @@ public class Hotel {
 		if (en == 0 && end.get(Calendar.DAY_OF_YEAR) != Calendar.getInstance(Locale.TAIWAN).get(Calendar.DAY_OF_YEAR)) {
 			en += 1;
 		}
-		if (st >= en) {
+		if (st >= en||st<0||en<0) {
 			return false;
 		} else {
 			for (int i = (int) st; i < en; i++) {
@@ -107,27 +107,30 @@ public class Hotel {
 	}
 
 	public Room[] getSingle() {
-		Room[] tmp = new Room[100];
-		for (int i = 0; i < 100; i++) {
-			tmp[i] = new Room(single[i]);
-		}
-		return tmp;
+//		Room[] tmp = new Room[100];
+//		for (int i = 0; i < 100; i++) {
+//			tmp[i] = new Room(single[i]);
+//		}
+//		return tmp;
+		return single;
 	}
 
 	public Room[] getDoub() {
-		Room[] tmp = new Room[100];
-		for (int i = 0; i < 100; i++) {
-			tmp[i] = new Room(doub[i]);
-		}
-		return tmp;
+//		Room[] tmp = new Room[100];
+//		for (int i = 0; i < 100; i++) {
+//			tmp[i] = new Room(doub[i]);
+//		}
+//		return tmp;
+		return doub;
 	}
 
 	public Room[] getQuad() {
-		Room[] tmp = new Room[100];
-		for (int i = 0; i < 100; i++) {
-			tmp[i] = new Room(quad[i]);
-		}
-		return tmp;
+//		Room[] tmp = new Room[100];
+//		for (int i = 0; i < 100; i++) {
+//			tmp[i] = new Room(quad[i]);
+//		}
+//		return tmp;
+		return quad;
 	}
 
 }
