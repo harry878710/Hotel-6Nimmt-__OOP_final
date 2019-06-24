@@ -161,7 +161,7 @@ public class Player {
 						}
 
 				} else {
-					selectDiff = 0;
+					selectDiff = -104;
 					for (int i = 0; i < hand.length; i++)
 						if (difference[i] < 0 && difference[i] > selectDiff) {
 							select = i;
@@ -170,7 +170,15 @@ public class Player {
 				}
 			}
 
-			if (flag == false)
+			if (flag == false) {
+				for (int i = 0; i < hand.length; i++)
+					if (difference[i] > 0 && difference[i] > selectDiff) {
+						select = i;
+						flag = true;
+					}
+			}
+			
+			if(flag ==false)
 				select = rnd.nextInt(hand.length);
 
 			System.out.print(name + " : ");
